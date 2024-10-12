@@ -122,9 +122,9 @@ public class Main {
 
         for (int index = 0; index < STATES.length; index++) {
             String state = STATES[index].toLowerCase(); // Convert state name to lowercase
-            int m = pattern.length();
-            int n = state.length();
-            int i = 0;
+            int m = pattern.length(); // Length of the pattern to search for
+            int n = state.length(); // Length of the current state string
+            int i = 0; // Starting position for the search in the current state
 
             while (i <= n - m) {
                 int j = m - 1;
@@ -139,7 +139,9 @@ public class Main {
                     matches.add(index);
                     break;
                 } else {
-                    // Shift the pattern to align with the next character based on the bad character rule
+                    // Check the character in the state that caused the mismatch with the pattern
+                    // Calculate the shift based on the bad character table for the mismatched character
+                    // Use a default value of -1 if the character is not in the pattern
                     i += Math.max(1, j - badCharacter.getOrDefault(state.charAt(i + j), -1));
                 }
             }
